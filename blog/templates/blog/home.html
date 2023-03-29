@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+
+
+	<title></title>
+</head>
+<body>
+
+	<div class="center">
+		<h1>Text to Image Converter</h1>
+
+<!-- 		{% if message %}
+			<p>{{ message }}</p>
+    {% endif %}; -->
+
+<!--     {% for image_path in image_paths %}
+    <img src="{{ image_path }}" alt="image">
+		{% endfor %} -->
+
+<!-- 		{% for image_path in image_paths %}
+		    <p>{{ image_path }}</p>
+		{% endfor %}
+ -->
+		<div class="image-container">
+	    {% for image_path in image_paths %}
+	        <img src="{{ image_path }}" alt="image" width="50" height="50">>
+	    {% endfor %}
+	  </div>
+
+	  {% spaceless %}
+		{% for image_path in image_paths %}
+    <img src="{{ image_path }}" alt="my image" width="50" height="50">{% if not forloop.last %}{% endif %}
+		{% endfor %}
+		{% endspaceless %}
+
+<!-- 	  <img src= "{{ '/static/images/image6.jpg' }}" alt="your image">
+ -->
+
+	</div>
+    <div class="container"> 
+	    <div class="input-div">
+
+	      <form method="post" action="{% url 'submit_data' %}" >
+	        {% csrf_token %}
+	        <label for="my_data">Enter your text:</label>
+	        <input type="text" id="my_data" name="my_data" placeholder="Type here...">
+	        <button type="submit">Submit</button>
+	      </form>
+
+	    </div>
+	    
+	    <div class="output-div">
+	      <form>
+	        <label for="output-field1">Splitted Paragraphs will be shown here:</label>
+	        <input type="text" id="output-field1" name="output-field1" readonly>
+	      </form>
+	      <form>
+	        <label for="output-field2">Keywords will be shown here:</label>
+	        <input type="text" id="output-field2" name="output-field2" readonly>
+	      </form>
+	    </div>
+
+	    <div class= "image-div">
+	       <form>
+	        <label for="output-field3">Image will be shown here:</label>
+					<img src="https://via.placeholder.com/150" id="my-image" alt="your image">
+	      </form>
+	    </div>
+
+    </div>
+    
+    <script>
+      const inputField = document.getElementById('my_data');
+      const outputField1 = document.getElementById('output-field1');
+      const outputField2 = document.getElementById('output-field2');
+      const outputField3 = document.getElementById('output-field3');
+      const submitBtn = document.getElementById('submit-btn');
+      const myImage = document.getElementById('my-image');
+
+
+      var form = document.querySelector('form');
+			var submitBtn = form.querySelector('button[type="submit"]');
+			var myDataInput = form.querySelector('#my_data');
+			var outputField1 = document.getElementById("outputField1");
+
+			submitBtn.addEventListener('click', function(event) {
+			    event.preventDefault(); // Prevent the form from submitting normally
+			    {% if message %}
+				  	outputField1.value = "{{ message }}";
+				  {% endif %}
+
+			}
+
+
+      
+      submitBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        const inputText = inputField.value;
+       // outputField1.value = inputText;
+				{% if message %}
+				  outputField1.value = "{{ message }}";
+				{% endif %}
+       // outputField2.value = inputText;
+       // outputField3.value = inputText;
+      });
+
+	  document.getElementById('submit-btn').addEventListener('click', function(event) {
+		event.preventDefault(); // prevent form submission
+		outputField.value = inputField.value;
+		myImage.src = 'https://via.placeholder.com/300';
+	  });
+    </script>
+
+
+  
+
+</body>
+</html>

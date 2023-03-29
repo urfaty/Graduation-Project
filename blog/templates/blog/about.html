@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/about.css' %}">
+
+
+	<title></title>
+</head>
+<body>
+
+	<div>
+        <div class="most-top-div" >
+            <h1 style="color: #E07A5F; font-size: 40px">Text To Image Converter</h1>
+        </div>
+    </div>
+
+
+    <div class="second-div">
+        <div class="second-div-a">
+            <form class = "second-div-a-form">
+                <input class= "second-div-a-form-input" type="text" id="my-text-field" name="my-text-field" placeholder="Convert your text to image">
+                <input class = "second-div-a-form-submit" type="submit" value="Convert">
+            </form>
+        </div>
+
+
+        <div class="second-div-b">
+			<div class="slider-container">
+			  <div class="slider">
+			    <img src="{% static 'images/image1.jpg' %}" alt="My Image">
+			    <img src="{% static 'images/image2.jpg' %}" alt="My Image">
+			    <img src="{% static 'images/image3.jpg' %}" alt="My Image">
+			  </div>
+                <button class="prev">&#10094;</button>
+                <button class="next">&#10095;</button>
+			</div>
+        </div>
+    </div>
+
+
+    <div class="third-div">
+        <div class="third-div-a">
+        		<h1 style="color: #3D405B; font-style: italic;">Summary of the Text</h1>
+
+	           	<p style="color: #3D405B; padding-left: 20px;"  >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	        	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	        	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	        	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	        	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            
+        </div>
+        <div class="third-div-b">
+        		<h1 style="color: #3D405B; font-style: italic;"> Keywords</h1>
+				<ul style="list-style-type: disc; margin: 0; padding: 0; color: #3D405B;">
+				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Keyword 1</li>
+				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Keyword 2</li>
+				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Keyword 3</li>
+				</ul>
+
+
+
+        </div>
+
+        <div class="third-div-c">
+        		<h1 style="color: #3D405B; font-style: italic;"> Similar Keywords</h1>
+				<ul style="list-style-type: disc; margin: 0; padding: 0; color: #3D405B;">
+				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Simlar Keyword 1</li>
+				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Simlar Keyword 2</li>
+				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Simlar Keyword 3</li>
+				</ul>
+        </div>
+
+        <div class="third-div-d">
+			<h1 style="color: #3D405B; font-style: italic;"> Selected Category</h1>
+			<h1 style="color: #3D405B;  solid 1px;"> General</h1>
+        </div>
+
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+		const slider = document.querySelector('.slider');
+		const prevButton = document.querySelector('.prev');
+		const nextButton = document.querySelector('.next');
+		const images = document.querySelectorAll('.slider img');
+
+		let counter = 1;
+		const size = images[0].clientWidth;
+
+		slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+
+		nextButton.addEventListener('click', () => {
+		  if (counter >= images.length - 1) return;
+		  slider.style.transition = 'transform 0.5s ease-in-out';
+		  counter++;
+		  slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+		});
+
+		prevButton.addEventListener('click', () => {
+		  if (counter <= 0) return;
+		  slider.style.transition = 'transform 0.5s ease-in-out';
+		  counter--;
+		  slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+		});
+
+		slider.addEventListener('transitionend', () => {
+		  if (images[counter].alt === 'last clone') {
+		    slider.style.transition = 'none';
+		    counter = images.length - 2;
+		    slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+		  }
+		  if (images[counter].alt === 'first clone') {
+		    slider.style.transition = 'none';
+		    counter = images.length - counter;
+		    slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+		  }
+		});
+
+
+    </script>
+
+    <footer>
+        <p>&copy; 2023 My Website</p>
+    </footer>
+
+</body>
+</html>
