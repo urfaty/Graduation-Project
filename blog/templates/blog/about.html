@@ -6,130 +6,192 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="{% static 'blog/about.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-2cfcTzTcL21bX9Lnt+U3qj+zNGoi+W51sbbPFUxvGnV7bs1mnQlZ+PrSxSx4lfByoYmlY4d33a8KOy4X6VTsUw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
 
 
 	<title></title>
 </head>
 <body>
-
-	<div>
-        <div class="most-top-div" >
-            <h1 style="color: #E07A5F; font-size: 40px">Text To Image Converter</h1>
-        </div>
-    </div>
-
-
-    <div class="second-div">
-        <div class="second-div-a">
-            <form class = "second-div-a-form">
-                <input class= "second-div-a-form-input" type="text" id="my-text-field" name="my-text-field" placeholder="Convert your text to image">
-                <input class = "second-div-a-form-submit" type="submit" value="Convert">
-            </form>
-        </div>
-
-
-        <div class="second-div-b">
-			<div class="slider-container">
-			  <div class="slider">
-			    <img src="{% static 'images/image1.jpg' %}" alt="My Image">
-			    <img src="{% static 'images/image2.jpg' %}" alt="My Image">
-			    <img src="{% static 'images/image3.jpg' %}" alt="My Image">
-			  </div>
-                <button class="prev">&#10094;</button>
-                <button class="next">&#10095;</button>
+	<div class="foreground">
+		<header class="header">
+			<div class="header-div-a">
+				<p class="header-div-a-paragraphtext">
+					story2image
+				</p>
 			</div>
-        </div>
+
+			<div class="header-div-b">
+				<p class="header-div-b-paragraph">About</p>
+				<p class="header-div-b-paragraph">Signup</p>
+
+			</div>
+		</header>
+
+			
+		<div class="middle-div">
+			<div class="middle-div-a"> 
+				<form>
+				  <textarea class="middle-div-a-textarea"id="input-text" name="input-text" placeholder="Enter your text here" ></textarea><br>
+				</form>
+			</div>
+
+			<div class="middle-div-b">
+				<div class="middle-div-b-div1">
+					<h1 class="middle-div-b-div1-h1">Find the best images for your story</h1>
+					
+				</div>
+				<div class="middle-div-b-div2">
+					<p class="middle-div-b-div2-p">Convert paragraphs into sets of images in seconds with the S2I AI Image Generator. Input text and watch your story visualize in any art style. </p>
+					
+				</div>
+				<div class="middle-div-b-div3">
+					<button class = "middle-div-b-div3-buttonleft">Generate</button>
+					<button class = "middle-div-b-div3-buttonright">Options</button>
+					
+				</div>				
+			</div>
+		</div>
+
+
+
+		<div class="second-div">
+
+
+
+			<div class="second-div-a"> 
+				<div class="second-div-a-div1">
+					<h1 class="second-div-a-div1-h1">Paragraph 1 </h1>
+				</div>
+
+				<div class="second-div-a-div2">
+					<textarea id="output" class="second-div-a-div1-textarea" readonly >Paragraph 1 will be shown here</textarea>
+				</div>
+			</div>
+
+
+
+	        <div class="second-div-b">
+				<div class="slider-container">
+				  <div class="slider">
+				    <img src="{% static 'images/image1.jpg' %}" alt="My Image">
+				    <img src="{% static 'images/image2.jpg' %}" alt="My Image">
+				    <img src="{% static 'images/image3.jpg' %}" alt="My Image">
+				  </div>
+	                <button class="prev">&#10094;</button>
+	                <button class="next">&#10095;</button>
+				</div>
+	        </div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="third-div">
+			<div class="third-div-a"> 
+				<div class="third-div-a-div1">
+					<h1 class="third-div-a-div1-h1">Paragraph 2 </h1>
+				</div>
+
+				<div class="third-div-a-div2">
+					<textarea id="output" class="third-div-a-div1-textarea" readonly >Paragraph 2 will be shown here</textarea>
+				</div>
+			</div>
+
+
+
+	        <div class="third-div-b">
+				<div class="slider-container">
+				  <div class="slider">
+				    <img src="{% static 'images/image1.jpg' %}" alt="My Image">
+				    <img src="{% static 'images/image2.jpg' %}" alt="My Image">
+				    <img src="{% static 'images/image3.jpg' %}" alt="My Image">
+				  </div>
+	                <button class="prev">&#10094;</button>
+	                <button class="next">&#10095;</button>
+				</div>
+	        </div>
+		</div>
+
+
+		<div class="fourth-div">
+			<button class = "fourth-div-buttonleft">Download Images</button>
+			<button class = "fourth-div-buttonright">Regenerate</button>
+		</div>
+
+
+
+
+	    <script type="text/javascript">
+			const slider = document.querySelector('.slider');
+			const prevButton = document.querySelector('.prev');
+			const nextButton = document.querySelector('.next');
+			const images = document.querySelectorAll('.slider img');
+
+			let counter = 1;
+			const size = images[0].clientWidth;
+
+			slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+
+			nextButton.addEventListener('click', () => {
+			  if (counter >= images.length - 1) return;
+			  slider.style.transition = 'transform 0.5s ease-in-out';
+			  counter++;
+			  slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+			});
+
+			prevButton.addEventListener('click', () => {
+			  if (counter <= 0) return;
+			  slider.style.transition = 'transform 0.5s ease-in-out';
+			  counter--;
+			  slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+			});
+
+			slider.addEventListener('transitionend', () => {
+			  if (images[counter].alt === 'last clone') {
+			    slider.style.transition = 'none';
+			    counter = images.length - 2;
+			    slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+			  }
+			  if (images[counter].alt === 'first clone') {
+			    slider.style.transition = 'none';
+			    counter = images.length - counter;
+			    slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+			  }
+			});
+
+
+	    </script>
+
+	    <footer class="footer">
+	    	<div class="footer-div-a">
+	        	<p class="footer-div-a-p">&copy; 2023 My Website</p>
+	        	<p class="footer-div-a-p">Contact</p>
+	        	<p class="footer-div-a-p">Terms of Service</p>
+
+	    		
+	    	</div>
+
+	    	<div class="footer-div-b">
+				<i style="color: white" class="fab fa-instagram"></i>
+				<i style="color: white" class="fab fa-linkedin"></i>
+
+	    		
+	    	</div>
+
+	    </footer>
+
+
+
     </div>
-
-
-    <div class="third-div">
-        <div class="third-div-a">
-        		<h1 style="color: #3D405B; font-style: italic;">Summary of the Text</h1>
-
-	           	<p style="color: #3D405B; padding-left: 20px;"  >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	        	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	        	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	        	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	        	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            
-        </div>
-        <div class="third-div-b">
-        		<h1 style="color: #3D405B; font-style: italic;"> Keywords</h1>
-				<ul style="list-style-type: disc; margin: 0; padding: 0; color: #3D405B;">
-				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Keyword 1</li>
-				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Keyword 2</li>
-				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Keyword 3</li>
-				</ul>
-
-
-
-        </div>
-
-        <div class="third-div-c">
-        		<h1 style="color: #3D405B; font-style: italic;"> Similar Keywords</h1>
-				<ul style="list-style-type: disc; margin: 0; padding: 0; color: #3D405B;">
-				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Simlar Keyword 1</li>
-				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Simlar Keyword 2</li>
-				  <li style="margin: 0 0 10px 20px; color: #3D405B;">Simlar Keyword 3</li>
-				</ul>
-        </div>
-
-        <div class="third-div-d">
-			<h1 style="color: #3D405B; font-style: italic;"> Selected Category</h1>
-			<h1 style="color: #3D405B;  solid 1px;"> General</h1>
-        </div>
-
-
-    </div>
-
-
-
-
-    <script type="text/javascript">
-		const slider = document.querySelector('.slider');
-		const prevButton = document.querySelector('.prev');
-		const nextButton = document.querySelector('.next');
-		const images = document.querySelectorAll('.slider img');
-
-		let counter = 1;
-		const size = images[0].clientWidth;
-
-		slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
-
-		nextButton.addEventListener('click', () => {
-		  if (counter >= images.length - 1) return;
-		  slider.style.transition = 'transform 0.5s ease-in-out';
-		  counter++;
-		  slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
-		});
-
-		prevButton.addEventListener('click', () => {
-		  if (counter <= 0) return;
-		  slider.style.transition = 'transform 0.5s ease-in-out';
-		  counter--;
-		  slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
-		});
-
-		slider.addEventListener('transitionend', () => {
-		  if (images[counter].alt === 'last clone') {
-		    slider.style.transition = 'none';
-		    counter = images.length - 2;
-		    slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
-		  }
-		  if (images[counter].alt === 'first clone') {
-		    slider.style.transition = 'none';
-		    counter = images.length - counter;
-		    slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
-		  }
-		});
-
-
-    </script>
-
-    <footer>
-        <p>&copy; 2023 My Website</p>
-    </footer>
-
 </body>
 </html>
